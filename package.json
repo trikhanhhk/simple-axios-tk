@@ -1,0 +1,36 @@
+{
+  "name": "simple-axios-tk",
+  "version": "1.0.0",
+  "description": "Create, custom quickly a axios: authentication, auto refresh token, ",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "custom axios",
+    "instance axios",
+    "how to create custom axios",
+    "simple axios",
+    "create axios",
+    "axios quickly",
+    "quickly axios"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trikhanhhk/simple-axios-tk"
+  },
+  "author": "tk0038",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.1",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6"
+  }
+}
