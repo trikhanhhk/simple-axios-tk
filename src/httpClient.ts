@@ -1,27 +1,18 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
+import { startCheckingTokenExpiration } from './tokenUtils';
 
-export const instance = async (
-    baseConfig: {
-        contentType?: string,
-        baseUrl?: string,
-        accessToken?: string | null | undefined,
-        beforeExpired?: number,
-        apiRefreshToke?: string | null | undefined
-    },
- error: (error: AxiosError | null) => void;
-): Promise<AxiosInstance> => {
+export const httpClient = async (contentType: string = "application/json") => {
+  const headers = {
+    'Accept': 'aplication/json',
+    'Content-Type': contentType,
+    'Access-Control-Allow-Origin': '*',
+  };
+  const config: AxiosRequestConfig = {
+    headers: headers,
+    baseURL: `Your base url to call api`, //example: 'https://api.example.com/api/v1
+  };
 
-    const headers = {
-        'Accept': 'application/json',
-        'Content-Type': baseConfig.contentType ? baseConfig.contentType : "application/json",
-        'Access-Control-Allow-Origin': '*',
-    };
-    const config: AxiosRequestConfig = {
-        headers: headers,
-        baseURL: baseConfig.baseUrl ? baseConfig.baseUrl : '',
-    };
-
-    const instance = axios.create(config);
+  const instance = axios.create(config);
 
   instance.interceptors.request.use(
     (config) => {
@@ -45,19 +36,18 @@ export const instance = async (
     },
 
     async (error) => {
-      console.error("Error from api:", error)
-      const originalConfig = error.config;
       if (error.response && error.response.status === 403) {
-        window.location.href = '/forbidden';
-        return false;
+        //do something
       } else {
-        if (error && error.response) {
-          console.error(error);
-        }
-        return false;
+        //do something
+        //you can throw (error)
       }
     }
   );
 
-    return instance;
+
+
+  return instance;
 };
+
+startCheckingTokenExpiration();

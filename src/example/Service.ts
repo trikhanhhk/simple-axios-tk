@@ -1,5 +1,7 @@
 import { httpClient } from "../httpClient";
 
+
+//call api to refresh token
 export const refreshTokenExpired = async (your_refresh_token: string) => {
     return (await httpClient()).post(`your api refresh`, { your_key_refresh: your_refresh_token });
 }
@@ -59,7 +61,7 @@ export const uploadAvatar = async (avatar: FormData) => {
                 const user = response.data.data;
                 //handle;
             }
-            
+
             fetchData();
         }, []);
  * 
